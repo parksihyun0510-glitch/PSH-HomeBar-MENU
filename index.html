@@ -40,8 +40,8 @@
         .intro-content { text-align: center; opacity: 0; transform: translateY(20px); animation: fadeUpIn 1.5s ease forwards 0.5s; }
         .intro-logo { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 700; color: #111; letter-spacing: 10px; margin-bottom: 8px; margin-right: -10px; }
         .intro-sub { font-size: 11px; font-weight: 500; color: #888; letter-spacing: 4px; text-transform: uppercase; }
-        .intro-line { width: 1px; height: 40px; background: #ddd; margin: 30px auto; }
-        .intro-bottom { position: absolute; bottom: 40px; opacity: 0; animation: fadeIn 2s ease forwards 1.8s; }
+        .intro-line { width: 1px; height: 35px; background: #ddd; margin: 25px auto; }
+        .intro-bottom { position: absolute; bottom: 35px; opacity: 0; animation: fadeIn 2s ease forwards 1.8s; }
         .intro-bottom span { font-size: 10px; color: #aaa; letter-spacing: 4px; text-transform: uppercase; animation: pulse 2.5s infinite alternate; }
 
         @keyframes fadeUpIn { to { opacity: 1; transform: translateY(0); } }
@@ -49,51 +49,51 @@
         @keyframes pulse { 0% { opacity: 0.3; } 100% { opacity: 1; } }
 
         /* -------------------------------------
-            [2] 메인 배경 및 레이아웃 (여백 압축)
+            [2] 메인 배경 및 레이아웃
         ------------------------------------- */
         .ambient-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #fdfdfd; z-index: -2; }
         .ambient-glow { position: fixed; width: 100vw; height: 100vw; background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 60%); top: -20vh; left: -20vw; border-radius: 50%; z-index: -1; transition: background 1s ease; }
-        header { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; z-index: 10; flex-shrink: 0; }
-        h1 { font-family: 'Playfair Display', serif; color: #111; font-size: 17px; font-weight: 700; letter-spacing: 1px;}
-        .category-name { font-size: 11px; color: #888; margin-top: 2px; font-weight: 500; letter-spacing: 0.5px;}
-        .menu-toggle-btn { background: transparent; border: 1px solid #ddd; color: #333; padding: 5px 12px; border-radius: 20px; font-size: 10px; font-weight: 600; cursor: pointer; letter-spacing: 1px; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 8px 20px; z-index: 10; flex-shrink: 0; }
+        h1 { font-family: 'Playfair Display', serif; color: #111; font-size: 16px; font-weight: 700; letter-spacing: 1px;}
+        .category-name { font-size: 11px; color: #888; margin-top: 1px; font-weight: 500; letter-spacing: 0.5px;}
+        .menu-toggle-btn { background: transparent; border: 1px solid #ddd; color: #333; padding: 4px 12px; border-radius: 20px; font-size: 10px; font-weight: 600; cursor: pointer; letter-spacing: 1px; }
         .slider-container { flex: 1; position: relative; width: 100%; overflow: hidden; display: flex; align-items: center; min-height: 0; }
         .slider-track { display: flex; width: 100%; height: 100%; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
 
         /* -------------------------------------
-            [3] 실사 이미지 및 카드 디자인 (스크롤 방지 컴팩트 핏)
+            [3] 스크롤 완전 차단 컴팩트 카드 디자인
         ------------------------------------- */
         .card { min-width: 100vw; height: 100%; padding: 0 15px; display: flex; flex-direction: column; justify-content: center; opacity: 0.3; transform: scale(0.92); transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
         .card.active { opacity: 1; transform: scale(1); }
-        .card-content { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 1); border-radius: 20px; padding: 16px 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.04); height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }
+        .card-content { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 1); border-radius: 20px; padding: 12px 18px; box-shadow: 0 15px 35px rgba(0,0,0,0.04); height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }
 
-        .menu-image-wrapper { width: 100%; height: 175px; border-radius: 12px; overflow: hidden; flex-shrink: 0; background-color: #f0f0f0; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .menu-image-wrapper { width: 100%; height: 160px; border-radius: 12px; overflow: hidden; flex-shrink: 0; background-color: #f0f0f0; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
         .menu-image { width: 100%; height: 100%; object-fit: cover; }
 
-        .text-group { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; margin: 4px 0; }
-        .menu-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: #111; line-height: 1.1; margin-bottom: 2px; }
-        .menu-kor { font-size: 13px; color: #a8905b; font-weight: 600; margin-bottom: 6px; letter-spacing: -0.5px;}
-        .menu-desc { font-size: 12px; color: #666; line-height: 1.4; font-weight: 400; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .text-group { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; margin: 2px 0; }
+        .menu-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: #111; line-height: 1.1; margin-bottom: 2px; }
+        .menu-kor { font-size: 12px; color: #a8905b; font-weight: 600; margin-bottom: 4px; letter-spacing: -0.5px;}
+        .menu-desc { font-size: 11.5px; color: #666; line-height: 1.35; font-weight: 400; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-        .info-box { border-top: 1px solid #eee; border-bottom: 1px solid #eee; padding: 10px 0; margin: 4px 0; flex-shrink: 0; }
-        .info-row { display: flex; align-items: center; margin-bottom: 6px; }
+        .info-box { border-top: 1px solid #eee; border-bottom: 1px solid #eee; padding: 8px 0; margin: 2px 0; flex-shrink: 0; }
+        .info-row { display: flex; align-items: center; margin-bottom: 4px; }
         .info-row:last-child { margin-bottom: 0; }
         .info-label { width: 80px; font-size: 10px; color: #999; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
         .info-value { font-size: 12px; color: #333; flex-grow: 1; display: flex; align-items: center; font-weight: 500;}
-        .info-value.bold-num { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: #111; }
+        .info-value.bold-num { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700; color: #111; }
         .stars { color: #a8905b; letter-spacing: 2px; font-size: 11px;}
         .stars-empty { color: #eaeaea; letter-spacing: 2px; font-size: 11px;}
 
-        .recipe-btn { width: 100%; padding: 11px; background: #111; color: #fff; border: none; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; letter-spacing: 1px; transition: background 0.2s; flex-shrink: 0; }
+        .recipe-btn { width: 100%; padding: 10px; background: #111; color: #fff; border: none; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; letter-spacing: 1px; transition: background 0.2s; flex-shrink: 0; }
         .recipe-btn:active { background: #333; }
 
         /* -------------------------------------
             [4] 하단 컨트롤러 & 오버레이
         ------------------------------------- */
-        .controls { display: flex; justify-content: space-between; align-items: center; padding: 8px 25px 15px; flex-shrink: 0; }
-        .btn { background: none; border: none; color: #888; font-size: 18px; padding: 8px; cursor: pointer;}
+        .controls { display: flex; justify-content: space-between; align-items: center; padding: 6px 25px 12px; flex-shrink: 0; }
+        .btn { background: none; border: none; color: #888; font-size: 18px; padding: 6px; cursor: pointer;}
         .btn:disabled { color: #ddd; }
-        .dots-wrapper { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+        .dots-wrapper { display: flex; flex-direction: column; align-items: center; gap: 4px; }
         .pagination { font-family: 'Playfair Display', serif; font-size: 11px; color: #888; letter-spacing: 2px; }
         .current-page { color: #111; font-weight: 700; }
         .dots { display: flex; gap: 5px; justify-content: center; }
