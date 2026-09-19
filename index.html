@@ -97,7 +97,7 @@
         .slider-track {
             display: flex;
             width: 100%;
-            height: 85%;
+            height: 90%;
             transition: transform 0.5s cubic-bezier(0.25, 1, 0.2, 1);
         }
 
@@ -121,32 +121,49 @@
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.8);
             border-radius: 24px;
-            padding: 30px 25px;
+            padding: 25px 25px; /* 위아래 패딩 살짝 조절 */
             box-shadow: 0 15px 35px rgba(0,0,0,0.08);
             height: 100%;
-            max-height: 600px;
+            max-height: 650px;
             display: flex;
             flex-direction: column;
         }
-        .menu-title { font-size: 26px; font-weight: 800; color: #111; word-break: keep-all; }
-        .menu-eng { font-size: 13px; color: #b8860b; margin: 4px 0 15px; font-weight: 600;}
-        .menu-desc { font-size: 15px; color: #555; line-height: 1.5; font-weight: 400; margin-bottom: 25px; flex-grow: 1; }
 
-        .info-box { background: rgba(255,255,255,0.6); border-radius: 16px; padding: 18px; border: 1px solid rgba(0,0,0,0.04); }
-        .info-row { display: flex; align-items: center; margin-bottom: 12px; }
+        /* 👈 새로 추가된 이미지 디자인 👉 */
+        .menu-image-wrapper {
+            width: 100%;
+            height: 200px; /* 사진 크기 */
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            flex-shrink: 0; /* 사진 크기 고정 */
+        }
+        .menu-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .menu-title { font-size: 24px; font-weight: 800; color: #111; word-break: keep-all; }
+        .menu-eng { font-size: 13px; color: #b8860b; margin: 4px 0 10px; font-weight: 600;}
+        .menu-desc { font-size: 14px; color: #555; line-height: 1.4; font-weight: 400; margin-bottom: 20px; flex-grow: 1; }
+
+        .info-box { background: rgba(255,255,255,0.6); border-radius: 16px; padding: 15px 18px; border: 1px solid rgba(0,0,0,0.04); }
+        .info-row { display: flex; align-items: center; margin-bottom: 10px; }
         .info-row:last-child { margin-bottom: 0; }
         .info-label { width: 85px; font-size: 11px; color: #888; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-        .info-value { font-size: 14px; color: #222; flex-grow: 1; display: flex; align-items: center; font-weight: 500;}
+        .info-value { font-size: 13px; color: #222; flex-grow: 1; display: flex; align-items: center; font-weight: 500;}
         
         .stars { color: #c49a00; letter-spacing: 2px;}
         .stars-empty { color: #ddd; letter-spacing: 2px;}
-        .divider { border: 0; border-top: 1px solid rgba(0,0,0,0.06); margin: 12px 0; }
+        .divider { border: 0; border-top: 1px solid rgba(0,0,0,0.06); margin: 10px 0; }
 
         /* 레시피 버튼 */
         .recipe-btn {
             width: 100%;
             margin-top: 15px;
-            padding: 14px;
+            padding: 12px;
             background: #ffffff;
             color: #b8860b;
             border: 1px solid #d4af37;
@@ -164,7 +181,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 30px 25px;
+            padding: 10px 30px 20px;
         }
         .btn { background: none; border: none; color: #888; font-size: 26px; cursor: pointer; padding: 10px; }
         .btn:disabled { color: #ddd; }
@@ -291,50 +308,70 @@
     </div>
 
     <script>
-        // 음료 고유 색상(bgGlow) 화이트 테마에 맞게 발색 조정 및 데이터 반영
+        // 👈 각 칵테일 정보 끝에 image: "인터넷사진주소" 가 추가되었습니다! 👉
         const menuData = [
             { cat: "🌊 Blue Ocean", name: "애플 블루 씨", eng: "Apple Blue Sea", desc: "청사과와 오렌지가 만난, 톡 쏘는 바다 맛 에이드", sweet: 3, alc: 1, carb: "O 🫧", flavor: "청사과, 오렌지 껍질 향", color: "맑은 푸른색 💙", bgGlow: "rgba(0, 160, 255, 0.25)",
+              image: "https://www.diaryofarecipecollector.com/wp-content/uploads/2021/07/blue-breeze-cocktail-6.jpeg",
               recipe: { glass: "하이볼 잔", method: "Build", abv: 8, ingredients: [{name:"스미노프 그린애플", amount:30, unit:"ml"}, {name:"블루 큐라소", amount:15, unit:"ml"}, {name:"사이다", amount:"Fill", unit:""}], garnish:"사과 슬라이스" } },
             { cat: "🌊 Blue Ocean", name: "블루 말리부 럼", eng: "Blue Malibu Rum", desc: "에메랄드빛 해변에 누워 마시는 코코넛 파인애플 주스", sweet: 4, alc: 2, carb: "X ❌", flavor: "코코넛, 파인애플, 럼", color: "에메랄드 투톤 💚💙", bgGlow: "rgba(0, 230, 150, 0.25)",
+              image: "https://thesocialsipper.com/wp-content/uploads/2026/04/tropic-twist-pineapple-cocktail-3.jpg",
               recipe: { glass: "허리케인 잔", method: "Build", abv: 11, ingredients: [{name:"말리부", amount:45, unit:"ml"}, {name:"바카디 화이트", amount:15, unit:"ml"}, {name:"블루 큐라소", amount:15, unit:"ml"}, {name:"파인애플 주스", amount:90, unit:"ml"}], garnish:"파인애플 웻지" } },
             { cat: "🌊 Blue Ocean", name: "블루 사파이어 스타일", eng: "Blue Sapphire Style", desc: "진 특유의 솔향과 오렌지 향이 섞인 맑고 투명한 푸른빛의 탄산 칵테일", sweet: 2, alc: 2, carb: "O 🫧", flavor: "주니퍼베리, 오렌지", color: "투명한 푸른색 💙", bgGlow: "rgba(50, 100, 255, 0.25)",
+              image: "https://d32miag6ta013h.cloudfront.net/bombay_sapphire_redesign/en-gl/23655/large/1400x2000sunsettonicv2.jpg",
               recipe: { glass: "하이볼 잔", method: "Build", abv: 10, ingredients: [{name:"런던 드라이 진", amount:30, unit:"ml"}, {name:"블루 큐라소", amount:15, unit:"ml"}, {name:"사이다", amount:"Fill", unit:""}], garnish:"레몬 트위스트" } },
             { cat: "🌊 Blue Ocean", name: "오션 뷰 스파클링", eng: "Ocean View Sparkling", desc: "달달함은 줄이고 청량함을 극대화한 어른의 바다", sweet: 2, alc: 3, carb: "O 🫧", flavor: "화이트 럼, 쌉싸름한 오렌지", color: "진한 딥 블루 🌊", bgGlow: "rgba(0, 40, 220, 0.25)",
+              image: "https://vintageamericancocktails.com/wp-content/uploads/2022/10/adios_motherfucker.jpg",
               recipe: { glass: "하이볼 잔", method: "Build", abv: 13, ingredients: [{name:"바카디 화이트", amount:30, unit:"ml"}, {name:"스미노프 그린애플", amount:15, unit:"ml"}, {name:"블루 큐라소", amount:15, unit:"ml"}, {name:"토닉워터", amount:"Fill", unit:""}], garnish:"라임 슬라이스" } },
             
             { cat: "🌅 Sunset & Pink", name: "복분자 선라이즈", eng: "Bokbunja Sunrise", desc: "석양이 지는 듯한 영롱한 색감의 복분자 오렌지", sweet: 5, alc: 1, carb: "X ❌", flavor: "진한 복분자, 오렌지, 석류", color: "노을빛 그라데이션 🧡❤️", bgGlow: "rgba(255, 80, 0, 0.25)",
+              image: "https://www.acouplecooks.com/wp-content/uploads/2021/07/Malibu-Sunset-002s.jpg",
               recipe: { glass: "콜린스 잔", method: "Build", abv: 7, ingredients: [{name:"복분자", amount:45, unit:"ml"}, {name:"오렌지 주스", amount:90, unit:"ml"}, {name:"그레나딘 시럽", amount:15, unit:"ml(Float)"}], garnish:"오렌지 슬라이스" } },
             { cat: "🌅 Sunset & Pink", name: "바카디 핑크 레이디", eng: "Bacardi Pink Lady", desc: "딸기 우유 같은 부드러운 분홍빛과 달콤한 맛이 특징인 디저트 칵테일", sweet: 4, alc: 2, carb: "X ❌", flavor: "부드러운 우유, 달콤한 석류", color: "딸기 우유 핑크 💗", bgGlow: "rgba(255, 105, 180, 0.25)",
+              image: "http://www.eatwell101.com/wp-content/uploads/2012/08/Bacardi-Cocktail-Rum-Recipe.jpg",
               recipe: { glass: "쿠페 잔", method: "Shake", abv: 11, ingredients: [{name:"바카디 화이트", amount:30, unit:"ml"}, {name:"그레나딘 시럽", amount:15, unit:"ml"}, {name:"우유", amount:60, unit:"ml"}], garnish:"없음" } },
             { cat: "🌅 Sunset & Pink", name: "사쿠라 블라썸 스위트", eng: "Sakura Blossom Sweet", desc: "아주 연한 벚꽃 핑크색을 띠며, 은은한 꽃향과 과일 향이 잘 어우러집니다", sweet: 4, alc: 1, carb: "O 🫧", flavor: "벚꽃 향, 청사과", color: "연한 벚꽃 핑크 🌸", bgGlow: "rgba(255, 150, 180, 0.25)",
+              image: "https://house.suntory.com/sites/default/files/styles/original/public/2024-03/ROKU_SAKURA_SODA_LTO_SERVE_sRGB_0.jpg.webp?itok=z2mX4uiv",
               recipe: { glass: "와인 잔", method: "Build", abv: 8, ingredients: [{name:"카나데 사쿠라", amount:30, unit:"ml"}, {name:"스미노프 그린애플", amount:15, unit:"ml"}, {name:"사이다", amount:60, unit:"ml"}, {name:"그레나딘 시럽", amount:1, unit:"Drop"}], garnish:"식용 벚꽃" } },
             { cat: "🌅 Sunset & Pink", name: "벚꽃 코코넛 구름", eng: "Sakura Coconut Cloud", desc: "구름처럼 폭신하고 부드러운 딸기 우유 느낌의 디저트 칵테일", sweet: 4, alc: 1, carb: "X ❌", flavor: "코코넛, 은은한 벚꽃 향", color: "불투명 연핑크 🌸", bgGlow: "rgba(255, 180, 200, 0.25)",
+              image: "http://rawnice.com/cdn/shop/articles/Sakura_Coconut_Latte.gif?v=1701970445",
               recipe: { glass: "올드 패션드 잔", method: "Shake", abv: 9, ingredients: [{name:"카나데 사쿠라", amount:30, unit:"ml"}, {name:"말리부", amount:30, unit:"ml"}, {name:"우유", amount:60, unit:"ml"}], garnish:"코코넛 파우더" } },
             
             { cat: "🌴 Tropical & Green", name: "피나콜라다 스타일", eng: "Piña Colada Style", desc: "코코넛 크림 없이도 완벽한 열대 과일 칵테일", sweet: 4, alc: 2, carb: "X ❌", flavor: "진한 코코넛, 파인애플", color: "불투명 노란빛 🍍", bgGlow: "rgba(255, 200, 30, 0.25)",
+              image: "https://images.getrecipekit.com/20240701194150-non-alcoholic-pina-colada.jpg?width=650&quality=90&",
               recipe: { glass: "허리케인 잔", method: "Shake", abv: 11, ingredients: [{name:"말리부", amount:45, unit:"ml"}, {name:"바카디 화이트", amount:15, unit:"ml"}, {name:"파인애플 주스", amount:90, unit:"ml"}], garnish:"파인애플 리프" } },
             { cat: "🌴 Tropical & Green", name: "트로피컬 진 펀치", eng: "Tropical Gin Punch", desc: "과일 펀치처럼 새콤달콤하면서도 진의 허브 향이 끝맛을 잡아줍니다", sweet: 4, alc: 2, carb: "X ❌", flavor: "오렌지, 파인애플, 솔잎 향", color: "상큼한 노란색 💛", bgGlow: "rgba(255, 180, 0, 0.25)",
+              image: "https://thymeandlove.com/wp-content/uploads/2019/08/pin-it-683x1024.jpg",
               recipe: { glass: "콜린스 잔", method: "Build", abv: 12, ingredients: [{name:"런던 드라이 진", amount:30, unit:"ml"}, {name:"말리부", amount:15, unit:"ml"}, {name:"오렌지 주스", amount:45, unit:"ml"}, {name:"파인애플 주스", amount:45, unit:"ml"}], garnish:"체리" } },
             { cat: "🌴 Tropical & Green", name: "코코넛 그린", eng: "Coconut Green", desc: "청사과의 상큼함과 코코넛의 고소한 단맛이 예상외로 훌륭한 시너지", sweet: 3, alc: 1, carb: "O 🫧", flavor: "청사과, 코코넛", color: "연한 초록빛 🍏", bgGlow: "rgba(80, 255, 80, 0.25)",
+              image: "https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=122157166400494239",
               recipe: { glass: "하이볼 잔", method: "Build", abv: 8, ingredients: [{name:"스미노프 그린애플", amount:30, unit:"ml"}, {name:"말리부", amount:15, unit:"ml"}, {name:"사이다", amount:60, unit:"ml"}], garnish:"없음" } },
             { cat: "🌴 Tropical & Green", name: "에메랄드 시티", eng: "Emerald City", desc: "시각적으로 가장 화려하고 신비로운 분위기를 연출하는 형광빛 칵테일", sweet: 3, alc: 2, carb: "X ❌", flavor: "청사과, 코코넛, 오렌지", color: "형광 에메랄드 💚", bgGlow: "rgba(0, 230, 100, 0.25)",
+              image: "https://whiteonricecouple.com/recipe/images/2009/03/club-med-bahamas-27-450x675.jpg",
               recipe: { glass: "마티니 잔", method: "Shake", abv: 14, ingredients: [{name:"스미노프 그린애플", amount:30, unit:"ml"}, {name:"말리부", amount:15, unit:"ml"}, {name:"오렌지 주스", amount:60, unit:"ml"}, {name:"블루 큐라소", amount:5, unit:"ml"}], garnish:"민트 잎" } },
             { cat: "🌴 Tropical & Green", name: "트로피컬 레인보우", eng: "Tropical Rainbow", desc: "위는 파랗고 아래는 노란 휴양지 해변 같은 투톤 그라데이션", sweet: 4, alc: 2, carb: "X ❌", flavor: "열대과일 믹스, 오렌지", color: "파랑-노랑 투톤 🌈", bgGlow: "rgba(80, 180, 255, 0.25)",
+              image: "https://cookingwithjanica.com/wp-content/uploads/2024/07/rainbow_paradise_cocktail-597x1024.jpg",
               recipe: { glass: "허리케인 잔", method: "Build", abv: 10, ingredients: [{name:"바카디 화이트", amount:30, unit:"ml"}, {name:"오렌지 주스", amount:45, unit:"ml"}, {name:"파인애플 주스", amount:45, unit:"ml"}, {name:"블루 큐라소", amount:15, unit:"ml(Float)"}], garnish:"오렌지 웻지" } },
             
             { cat: "🥂 Mix & Premium", name: "사쿠라 진 토닉", eng: "Sakura Gin Tonic", desc: "클래식 진토닉에 우아한 벚꽃 향을 더한 고급스러운 한 잔", sweet: 2, alc: 2, carb: "O 🫧", flavor: "벚꽃 향, 주니퍼베리", color: "투명 연분홍 🌸", bgGlow: "rgba(255, 170, 200, 0.25)",
+              image: "https://house.suntory.com/sites/default/files/styles/original/public/2025-07/1.webp?itok=mN57AFJW",
               recipe: { glass: "하이볼 잔", method: "Build", abv: 11, ingredients: [{name:"런던 드라이 진", amount:30, unit:"ml"}, {name:"카나데 사쿠라", amount:15, unit:"ml"}, {name:"토닉워터", amount:"Fill", unit:""}], garnish:"레몬 슬라이스" } },
             { cat: "🥂 Mix & Premium", name: "체리블라썸 애플", eng: "Cherry Blossom Apple", desc: "마티니처럼 달콤하면서도 알코올의 존재감이 기분 좋게 느껴지는 맛", sweet: 3, alc: 3, carb: "O 🫧", flavor: "벚꽃 향, 청사과", color: "은은한 핑크 🍒", bgGlow: "rgba(255, 130, 160, 0.25)",
+              image: "https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=540187365703335",
               recipe: { glass: "마티니 잔", method: "Shake", abv: 18, ingredients: [{name:"스미노프 그린애플", amount:30, unit:"ml"}, {name:"카나데 사쿠라", amount:30, unit:"ml"}, {name:"사이다", amount:45, unit:"ml"}], garnish:"애플 슬라이스" } },
             { cat: "🥂 Mix & Premium", name: "퍼플 갤럭시", eng: "Purple Galaxy", desc: "붉은색과 푸른색이 섞이며 우주 같은 몽환적인 보랏빛 연출", sweet: 3, alc: 2, carb: "O 🫧", flavor: "솔향, 오렌지, 석류", color: "몽환적 보랏빛 🌌", bgGlow: "rgba(130, 40, 255, 0.25)",
+              image: "https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=1950046788761963",
               recipe: { glass: "하이볼 잔", method: "Build", abv: 9, ingredients: [{name:"그레나딘 시럽", amount:15, unit:"ml(Bottom)"}, {name:"런던 드라이 진", amount:30, unit:"ml"}, {name:"사이다", amount:90, unit:"ml"}, {name:"블루 큐라소", amount:15, unit:"ml(Float)"}], garnish:"없음" } },
             { cat: "🥂 Mix & Premium", name: "스위트 AMF", eng: "Adios Mother F****", desc: "단맛과 청량함에 가려져 꿀꺽꿀꺽 넘어가는 파티용 폭탄주", sweet: 4, alc: 4, carb: "O 🫧", flavor: "청사과, 오렌지, 럼, 진", color: "투명 블루 💎", bgGlow: "rgba(40, 130, 255, 0.25)",
+              image: "https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=702115025781402",
               recipe: { glass: "콜린스 잔", method: "Build", abv: 18, ingredients: [{name:"런던 드라이 진", amount:15, unit:"ml"}, {name:"바카디 화이트", amount:15, unit:"ml"}, {name:"스미노프 그린애플", amount:15, unit:"ml"}, {name:"블루 큐라소", amount:15, unit:"ml"}, {name:"사이다", amount:"Fill", unit:""}], garnish:"레몬 웻지" } },
             { cat: "🥂 Mix & Premium", name: "오리엔탈 선셋 하이볼", eng: "Oriental Sunset Highball", desc: "프리미엄 위스키의 오크 향에 꽃과 과일의 단맛이 더해진 럭셔리 하이볼", sweet: 3, alc: 3, carb: "O 🫧", flavor: "오크통 향, 벚꽃, 오렌지", color: "노을빛 붉은색 🌅", bgGlow: "rgba(255, 60, 0, 0.25)",
+              image: "https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=1041360784784793",
               recipe: { glass: "올드 패션드 잔", method: "Build", abv: 14, ingredients: [{name:"토고우치 18년", amount:15, unit:"ml"}, {name:"카나데 사쿠라", amount:15, unit:"ml"}, {name:"오렌지 주스", amount:60, unit:"ml"}, {name:"그레나딘 시럽", amount:15, unit:"ml(Float)"}], garnish:"오렌지 필" } },
             { cat: "🥂 Mix & Premium", name: "진 앤 베리 블리스", eng: "Gin & Berry Bliss", desc: "복분자의 무거운 단맛을 진이 깔끔하게 잡아주는 와인 에이드 스타일", sweet: 3, alc: 2, carb: "O 🫧", flavor: "진한 복분자, 허브 향", color: "검붉은 와인색 🍷", bgGlow: "rgba(150, 0, 50, 0.2)",
+              image: "https://butternutbakeryblog.com/wp-content/uploads/2026/06/blackberry-hugo-spritz.jpg",
               recipe: { glass: "와인 잔", method: "Build", abv: 11, ingredients: [{name:"런던 드라이 진", amount:30, unit:"ml"}, {name:"복분자", amount:30, unit:"ml"}, {name:"사이다", amount:60, unit:"ml"}], garnish:"로즈마리" } },
             { cat: "🥂 Mix & Premium", name: "코코넛 애플 브리즈", eng: "Coconut Apple Breeze", desc: "스크류바 아이스크림을 연상케 하는 친숙하고 기분 좋은 단맛", sweet: 4, alc: 2, carb: "X ❌", flavor: "코코넛, 청사과, 달콤한 석류", color: "코럴 빛깔 🍹", bgGlow: "rgba(255, 100, 80, 0.25)",
+              image: "https://www.spendwithpennies.com/wp-content/uploads/2016/02/Tropical-Bay-Breeze-Cocktail-23-500x500.jpg",
               recipe: { glass: "마티니 잔", method: "Shake", abv: 13, ingredients: [{name:"말리부", amount:30, unit:"ml"}, {name:"스미노프 그린애플", amount:30, unit:"ml"}, {name:"파인애플 주스", amount:60, unit:"ml"}, {name:"그레나딘 시럽", amount:15, unit:"ml(Sink)"}], garnish:"체리" } }
         ];
 
@@ -357,7 +394,6 @@
             updateSlider();
         }
 
-        // 별점 및 도수 텍스트 렌더링
         const getStars = (count) => `<span class="stars">${'★'.repeat(count)}</span><span class="stars-empty">${'★'.repeat(5 - count)}</span>`;
         const getAlc = (count, abv) => `<span class="stars">${'🥃'.repeat(count)}</span> <span style="font-size:12px; color:#777; margin-left:6px; font-weight:600;">(ABV ${abv}%)</span>`;
 
@@ -371,6 +407,11 @@
                 card.className = `card`;
                 card.innerHTML = `
                     <div class="card-content">
+                        <!-- 👈 여기에 이미지가 추가되었습니다! 👉 -->
+                        <div class="menu-image-wrapper">
+                            <img src="${menu.image}" alt="${menu.name}" class="menu-image">
+                        </div>
+
                         <div class="menu-title">${menu.name}</div>
                         <div class="menu-eng">${menu.eng}</div>
                         <div class="menu-desc">"${menu.desc}"</div>
@@ -429,7 +470,6 @@
             document.getElementById('prevBtn').disabled = currentIndex === 0;
             document.getElementById('nextBtn').disabled = currentIndex === activeIndices.length - 1;
 
-            // 음료 색상에 맞춰 배경 오로라 변경
             document.querySelector('.ambient-glow').style.background = `radial-gradient(circle, ${currentMenu.bgGlow} 0%, transparent 70%)`;
 
             saveProgress();
@@ -441,7 +481,6 @@
             updateSlider();
         }
 
-        // 터치 슬라이드
         let startX = 0, isDragging = false;
         const sliderContainer = document.getElementById('sliderContainer');
 
@@ -469,7 +508,6 @@
             else updateSlider(); 
         }, {passive: true});
 
-        // 목차 기능
         function toggleToc() {
             const overlay = document.getElementById('tocOverlay');
             overlay.classList.toggle('open');
@@ -482,7 +520,6 @@
             items[currentIndex]?.scrollIntoView({ block: 'center', behavior: 'smooth' });
         }
 
-        // 레시피 팝업
         function openRecipe(rawIndex) {
             const data = menuData[rawIndex];
             const r = data.recipe;
@@ -503,7 +540,6 @@
             document.getElementById('recipeSheet').classList.remove('show');
         }
 
-        // 키보드 조작
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight') moveSlide(1);
             if (e.key === 'ArrowLeft') moveSlide(-1);
@@ -513,7 +549,6 @@
             }
         });
 
-        // 위치 기억
         function saveProgress() {
             try { localStorage.setItem('lastRawIndex', activeIndices[currentIndex]); } catch(e) {}
         }
@@ -527,7 +562,6 @@
             } catch(e) {}
         }
 
-        // 초기화
         applySortAndRender(); 
         loadProgress();       
         updateSlider();       
