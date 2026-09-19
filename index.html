@@ -6,7 +6,6 @@
     <title>Sihyeon's Lounge</title>
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-        /* 세리프(명조) 폰트 추가 로드 (표지 고급화) */
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 
         * {
@@ -28,7 +27,7 @@
         }
 
         /* -------------------------------------
-           [1] 인트로(대문) 페이지 - 극도의 미니멀리즘
+            [1] 인트로(대문) 페이지 
         ------------------------------------- */
         .intro-overlay {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
@@ -37,96 +36,40 @@
             transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
         }
-        .intro-overlay.hidden {
-            opacity: 0; transform: translateY(-5%); pointer-events: none;
-        }
-        
-        .intro-content {
-            text-align: center; opacity: 0; transform: translateY(20px);
-            animation: fadeUpIn 1.5s ease forwards 0.5s;
-        }
-        
-        .intro-logo {
-            font-family: 'Playfair Display', serif; /* 감각적인 세리프 폰트 */
-            font-size: 38px; font-weight: 700; color: #111; letter-spacing: 10px;
-            margin-bottom: 8px; margin-right: -10px; /* 자간 보정 */
-        }
-        
-        .intro-sub {
-            font-size: 11px; font-weight: 500; color: #888; letter-spacing: 4px;
-            text-transform: uppercase;
-        }
-
-        .intro-line {
-            width: 1px; height: 50px; background: #ddd; margin: 40px auto;
-        }
-        
-        .intro-bottom {
-            position: absolute; bottom: 60px; opacity: 0;
-            animation: fadeIn 2s ease forwards 1.8s;
-        }
-        .intro-bottom span {
-            font-size: 10px; color: #aaa; letter-spacing: 4px; text-transform: uppercase;
-            animation: pulse 2.5s infinite alternate;
-        }
+        .intro-overlay.hidden { opacity: 0; transform: translateY(-5%); pointer-events: none; }
+        .intro-content { text-align: center; opacity: 0; transform: translateY(20px); animation: fadeUpIn 1.5s ease forwards 0.5s; }
+        .intro-logo { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 700; color: #111; letter-spacing: 10px; margin-bottom: 8px; margin-right: -10px; }
+        .intro-sub { font-size: 11px; font-weight: 500; color: #888; letter-spacing: 4px; text-transform: uppercase; }
+        .intro-line { width: 1px; height: 50px; background: #ddd; margin: 40px auto; }
+        .intro-bottom { position: absolute; bottom: 60px; opacity: 0; animation: fadeIn 2s ease forwards 1.8s; }
+        .intro-bottom span { font-size: 10px; color: #aaa; letter-spacing: 4px; text-transform: uppercase; animation: pulse 2.5s infinite alternate; }
 
         @keyframes fadeUpIn { to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { to { opacity: 1; } }
         @keyframes pulse { 0% { opacity: 0.3; } 100% { opacity: 1; } }
 
         /* -------------------------------------
-           [2] 메인 배경 및 레이아웃
+            [2] 메인 배경 및 레이아웃
         ------------------------------------- */
-        .ambient-bg {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: #fdfdfd; z-index: -2;
-        }
-        .ambient-glow {
-            position: fixed; width: 100vw; height: 100vw;
-            background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 60%);
-            top: -20vh; left: -20vw; border-radius: 50%; z-index: -1;
-            transition: background 1s ease;
-        }
-
-        header {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 20px; z-index: 10; margin-bottom: 5px;
-        }
+        .ambient-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #fdfdfd; z-index: -2; }
+        .ambient-glow { position: fixed; width: 100vw; height: 100vw; background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 60%); top: -20vh; left: -20vw; border-radius: 50%; z-index: -1; transition: background 1s ease; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; z-index: 10; margin-bottom: 5px; }
         h1 { font-family: 'Playfair Display', serif; color: #111; font-size: 18px; font-weight: 700; letter-spacing: 1px;}
         .category-name { font-size: 12px; color: #888; margin-top: 4px; font-weight: 500; letter-spacing: 0.5px;}
-        .menu-toggle-btn {
-            background: transparent; border: 1px solid #ddd;
-            color: #333; padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 600;
-            cursor: pointer; letter-spacing: 1px;
-        }
-
+        .menu-toggle-btn { background: transparent; border: 1px solid #ddd; color: #333; padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 600; cursor: pointer; letter-spacing: 1px; }
         .slider-container { flex: 1; position: relative; width: 100%; overflow: hidden; display: flex; align-items: center; }
         .slider-track { display: flex; width: 100%; height: 95%; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
 
         /* -------------------------------------
-           [3] 카드 내부 디자인 (미니멀 & 스크롤)
+            [3] 실사 이미지 및 카드 디자인
         ------------------------------------- */
-        .card {
-            min-width: 100vw; height: 100%; padding: 0 15px; 
-            display: flex; flex-direction: column; justify-content: center;
-            opacity: 0.3; transform: scale(0.92); transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
+        .card { min-width: 100vw; height: 100%; padding: 0 15px; display: flex; flex-direction: column; justify-content: center; opacity: 0.3; transform: scale(0.92); transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
         .card.active { opacity: 1; transform: scale(1); }
-
-        .card-content {
-            background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 1); border-radius: 20px; padding: 25px 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.04);
-            height: 100%; width: 100%; overflow-y: auto; -ms-overflow-style: none; scrollbar-width: none;
-        }
+        .card-content { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 1); border-radius: 20px; padding: 25px 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.04); height: 100%; width: 100%; overflow-y: auto; -ms-overflow-style: none; scrollbar-width: none; }
         .card-content::-webkit-scrollbar { display: none; }
 
-        /* 사진 대신 코드로 그린 칵테일(SVG)이 떠 있는 공간 */
-        .svg-wrapper {
-            width: 100%; height: 190px;
-            display: flex; justify-content: center; align-items: center;
-            margin-bottom: 25px;
-        }
+        .menu-image-wrapper { width: 100%; height: 200px; border-radius: 12px; overflow: hidden; margin-bottom: 25px; background-color: #f0f0f0; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .menu-image { width: 100%; height: 100%; object-fit: cover; }
 
         .menu-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: #111; line-height: 1.1; margin-bottom: 6px; }
         .menu-kor { font-size: 14px; color: #a8905b; font-weight: 600; margin-bottom: 15px; letter-spacing: -0.5px;}
@@ -138,19 +81,14 @@
         .info-label { width: 85px; font-size: 10px; color: #999; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
         .info-value { font-size: 13px; color: #333; flex-grow: 1; display: flex; align-items: center; font-weight: 500;}
         .info-value.bold-num { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: #111; }
-        
         .stars { color: #a8905b; letter-spacing: 2px;}
         .stars-empty { color: #eaeaea; letter-spacing: 2px;}
 
-        .recipe-btn {
-            width: 100%; padding: 14px; background: #111; color: #fff;
-            border: none; border-radius: 12px; font-size: 13px; font-weight: 600; cursor: pointer;
-            letter-spacing: 1px; transition: background 0.2s; margin-bottom: 10px;
-        }
+        .recipe-btn { width: 100%; padding: 14px; background: #111; color: #fff; border: none; border-radius: 12px; font-size: 13px; font-weight: 600; cursor: pointer; letter-spacing: 1px; transition: background 0.2s; margin-bottom: 10px; }
         .recipe-btn:active { background: #333; }
 
         /* -------------------------------------
-           [4] 하단 컨트롤러 & 오버레이
+            [4] 하단 컨트롤러 & 오버레이
         ------------------------------------- */
         .controls { display: flex; justify-content: space-between; align-items: center; padding: 10px 25px 25px; }
         .btn { background: none; border: none; color: #888; font-size: 20px; padding: 10px; cursor: pointer;}
@@ -162,11 +100,7 @@
         .dot { width: 4px; height: 4px; border-radius: 50%; background: #ddd; transition: all 0.3s; }
         .dot.active { width: 16px; background: #a8905b; border-radius: 4px; }
 
-        .toc-overlay {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(255, 255, 255, 0.98); z-index: 100; display: flex; flex-direction: column;
-            transform: translateY(100%); transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
+        .toc-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(255, 255, 255, 0.98); z-index: 100; display: flex; flex-direction: column; transform: translateY(100%); transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
         .toc-overlay.open { transform: translateY(0); }
         .toc-header { display: flex; justify-content: space-between; align-items: center; padding: 25px; border-bottom: 1px solid #f0f0f0; }
         .toc-header h2 { font-family: 'Playfair Display', serif; font-size: 18px; color: #111; font-weight: 700;}
@@ -180,17 +114,9 @@
         .toc-item-current { background: #fcfbf9; border-left: 2px solid #a8905b; padding-left: 15px;}
         .toc-item-current .toc-item-name { color: #a8905b; font-weight: 700; }
 
-        .recipe-dim {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(0,0,0,0.4); z-index: 200; opacity: 0; pointer-events: none; transition: opacity 0.4s;
-        }
+        .recipe-dim { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.4); z-index: 200; opacity: 0; pointer-events: none; transition: opacity 0.4s; }
         .recipe-dim.show { opacity: 1; pointer-events: auto; }
-        .recipe-sheet {
-            position: fixed; bottom: 0; left: 0; width: 100%;
-            background: #ffffff; border-radius: 28px 28px 0 0; z-index: 201;
-            transform: translateY(100%); transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-            padding: 20px 25px 40px; box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
-        }
+        .recipe-sheet { position: fixed; bottom: 0; left: 0; width: 100%; background: #ffffff; border-radius: 28px 28px 0 0; z-index: 201; transform: translateY(100%); transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); padding: 20px 25px 40px; box-shadow: 0 -10px 40px rgba(0,0,0,0.1); }
         .recipe-sheet.show { transform: translateY(0); }
         .recipe-handle { width: 36px; height: 4px; background: #e0e0e0; border-radius: 2px; margin: 0 auto 25px; }
         .recipe-title { font-family: 'Playfair Display', serif; font-size: 20px; color: #111; margin-bottom: 5px; font-weight: 700; }
@@ -203,7 +129,6 @@
     </style>
 </head>
 <body>
-    <!-- [1] 극도로 감각적인 타이틀 페이지 -->
     <div id="introPage" class="intro-overlay" onclick="closeIntro()">
         <div class="intro-content">
             <h1 class="intro-logo">SIHYEON</h1>
@@ -216,7 +141,6 @@
         </div>
     </div>
 
-    <!-- [2] 메인 앱 영역 -->
     <div class="ambient-bg"></div>
     <div class="ambient-glow"></div>
     
@@ -229,9 +153,7 @@
     </header>
 
     <div class="slider-container" id="sliderContainer">
-        <div class="slider-track" id="sliderTrack">
-            <!-- 코드로 그린 아트웍이 여기에 생성됩니다 -->
-        </div>
+        <div class="slider-track" id="sliderTrack"></div>
     </div>
 
     <div class="controls">
@@ -264,54 +186,71 @@
     </div>
 
     <script>
-        function closeIntro() {
-            document.getElementById('introPage').classList.add('hidden');
-        }
+        function closeIntro() { document.getElementById('introPage').classList.add('hidden'); }
 
-        // [핵심] 사진 URL이 아예 사라졌습니다! 대신 그라데이션 컬러(grad) 정보가 코드로 그림을 그립니다.
         const menuData = [
-            { cat: "🌊 Blue Ocean", name: "애플 블루 씨", eng: "Apple Blue Sea", desc: "청사과와 오렌지가 만난, 톡 쏘는 바다 맛 에이드", sweet: 3, alc: 8, carb: "🫧", flavor: "청사과, 오렌지 껍질 향", color: "맑은 푸른색 💙", grad: ["#00C9FF", "#92FE9D"],
+            { cat: "🌊 Blue Ocean", name: "애플 블루 씨", eng: "Apple Blue Sea", desc: "청사과와 오렌지가 만난, 톡 쏘는 바다 맛 에이드", sweet: 3, alc: 8, carb: "🫧", flavor: "청사과, 오렌지 껍질 향", color: "맑은 푸른색 💙", 
+              image: "images/img01.png", glow: "rgba(0, 160, 255, 0.15)",
               recipe: { glass: "하이볼 잔", method: "Build", abv: 8, ingredients: [{name:"스미노프 그린애플", amount:30, unit:"ml"}, {name:"블루 큐라소", amount:15, unit:"ml"}, {name:"사이다", amount:"Fill", unit:""}], garnish:"사과 슬라이스" } },
-            { cat: "🌊 Blue Ocean", name: "블루 말리부 럼", eng: "Blue Malibu Rum", desc: "에메랄드빛 해변에 누워 마시는 코코넛 파인애플 주스", sweet: 4, alc: 11, carb: "❌", flavor: "코코넛, 파인애플, 럼", color: "에메랄드 투톤 💚💙", grad: ["#00B4DB", "#0083B0"],
+            { cat: "🌊 Blue Ocean", name: "블루 말리부 럼", eng: "Blue Malibu Rum", desc: "에메랄드빛 해변에 누워 마시는 코코넛 파인애플 주스", sweet: 4, alc: 11, carb: "❌", flavor: "코코넛, 파인애플, 럼", color: "에메랄드 투톤 💚💙", 
+              image: "images/img02.png", glow: "rgba(0, 230, 150, 0.15)",
               recipe: { glass: "허리케인 잔", method: "Build", abv: 11, ingredients: [{name:"말리부", amount:45, unit:"ml"}, {name:"바카디 화이트", amount:15, unit:"ml"}, {name:"블루 큐라소", amount:15, unit:"ml"}, {name:"파인애플 주스", amount:90, unit:"ml"}], garnish:"파인애플 웻지" } },
-            { cat: "🌊 Blue Ocean", name: "블루 사파이어 스타일", eng: "Blue Sapphire Style", desc: "진 특유의 솔향과 오렌지 향이 섞인 맑고 투명한 푸른빛의 탄산 칵테일", sweet: 2, alc: 10, carb: "🫧", flavor: "주니퍼베리, 오렌지", color: "투명한 푸른색 💙", grad: ["#2193b0", "#6dd5ed"],
+            { cat: "🌊 Blue Ocean", name: "블루 사파이어 스타일", eng: "Blue Sapphire Style", desc: "진 특유의 솔향과 오렌지 향이 섞인 맑고 투명한 푸른빛의 탄산 칵테일", sweet: 2, alc: 10, carb: "🫧", flavor: "주니퍼베리, 오렌지", color: "투명한 푸른색 💙", 
+              image: "images/img03.png", glow: "rgba(50, 100, 255, 0.15)",
               recipe: { glass: "하이볼 잔", method: "Build", abv: 10, ingredients: [{name:"런던 드라이 진", amount:30, unit:"ml"}, {name:"블루 큐라소", amount:15, unit:"ml"}, {name:"사이다", amount:"Fill", unit:""}], garnish:"레몬 트위스트" } },
-            { cat: "🌊 Blue Ocean", name: "오션 뷰 스파클링", eng: "Ocean View Sparkling", desc: "달달함은 줄이고 청량함을 극대화한 어른의 바다", sweet: 2, alc: 13, carb: "🫧", flavor: "화이트 럼, 쌉싸름한 오렌지", color: "진한 딥 블루 🌊", grad: ["#0052D4", "#4364F7"],
+            { cat: "🌊 Blue Ocean", name: "오션 뷰 스파클링", eng: "Ocean View Sparkling", desc: "달달함은 줄이고 청량함을 극대화한 어른의 바다", sweet: 2, alc: 13, carb: "🫧", flavor: "화이트 럼, 쌉싸름한 오렌지", color: "진한 딥 블루 🌊", 
+              image: "images/img04.png", glow: "rgba(0, 40, 220, 0.15)",
               recipe: { glass: "하이볼 잔", method: "Build", abv: 13, ingredients: [{name:"바카디 화이트", amount:30, unit:"ml"}, {name:"스미노프 그린애플", amount:15, unit:"ml"}, {name:"블루 큐라소", amount:15, unit:"ml"}, {name:"토닉워터", amount:"Fill", unit:""}], garnish:"라임 슬라이스" } },
             
-            { cat: "🌅 Sunset & Pink", name: "복분자 선라이즈", eng: "Bokbunja Sunrise", desc: "석양이 지는 듯한 영롱한 색감의 복분자 오렌지", sweet: 5, alc: 7, carb: "❌", flavor: "진한 복분자, 오렌지, 석류", color: "노을빛 그라데이션 🧡❤️", grad: ["#FF4E50", "#F9D423"],
+            { cat: "🌅 Sunset & Pink", name: "복분자 선라이즈", eng: "Bokbunja Sunrise", desc: "석양이 지는 듯한 영롱한 색감의 복분자 오렌지", sweet: 5, alc: 7, carb: "❌", flavor: "진한 복분자, 오렌지, 석류", color: "노을빛 그라데이션 🧡❤️", 
+              image: "images/img05.png", glow: "rgba(255, 80, 0, 0.15)",
               recipe: { glass: "콜린스 잔", method: "Build", abv: 7, ingredients: [{name:"복분자", amount:45, unit:"ml"}, {name:"오렌지 주스", amount:90, unit:"ml"}, {name:"그레나딘 시럽", amount:15, unit:"ml(Float)"}], garnish:"오렌지 슬라이스" } },
-            { cat: "🌅 Sunset & Pink", name: "바카디 핑크 레이디", eng: "Bacardi Pink Lady", desc: "딸기 우유 같은 부드러운 분홍빛과 달콤한 맛이 특징인 디저트 칵테일", sweet: 4, alc: 11, carb: "❌", flavor: "부드러운 우유, 달콤한 석류", color: "딸기 우유 핑크 💗", grad: ["#ff9a9e", "#fecfef"],
+            { cat: "🌅 Sunset & Pink", name: "바카디 핑크 레이디", eng: "Bacardi Pink Lady", desc: "딸기 우유 같은 부드러운 분홍빛과 달콤한 맛이 특징인 디저트 칵테일", sweet: 4, alc: 11, carb: "❌", flavor: "부드러운 우유, 달콤한 석류", color: "딸기 우유 핑크 💗", 
+              image: "images/img06.png", glow: "rgba(255, 105, 180, 0.15)",
               recipe: { glass: "쿠페 잔", method: "Shake", abv: 11, ingredients: [{name:"바카디 화이트", amount:30, unit:"ml"}, {name:"그레나딘 시럽", amount:15, unit:"ml"}, {name:"우유", amount:60, unit:"ml"}], garnish:"없음" } },
-            { cat: "🌅 Sunset & Pink", name: "사쿠라 블라썸 스위트", eng: "Sakura Blossom Sweet", desc: "아주 연한 벚꽃 핑크색을 띠며, 은은한 꽃향과 과일 향이 잘 어우러집니다", sweet: 4, alc: 8, carb: "🫧", flavor: "벚꽃 향, 청사과", color: "연한 벚꽃 핑크 🌸", grad: ["#a18cd1", "#fbc2eb"],
+            { cat: "🌅 Sunset & Pink", name: "사쿠라 블라썸 스위트", eng: "Sakura Blossom Sweet", desc: "아주 연한 벚꽃 핑크색을 띠며, 은은한 꽃향과 과일 향이 잘 어우러집니다", sweet: 4, alc: 8, carb: "🫧", flavor: "벚꽃 향, 청사과", color: "연한 벚꽃 핑크 🌸", 
+              image: "images/img07.png", glow: "rgba(255, 150, 180, 0.15)",
               recipe: { glass: "와인 잔", method: "Build", abv: 8, ingredients: [{name:"카나데 사쿠라", amount:30, unit:"ml"}, {name:"스미노프 그린애플", amount:15, unit:"ml"}, {name:"사이다", amount:60, unit:"ml"}, {name:"그레나딘 시럽", amount:1, unit:"Drop"}], garnish:"식용 벚꽃" } },
-            { cat: "🌅 Sunset & Pink", name: "벚꽃 코코넛 구름", eng: "Sakura Coconut Cloud", desc: "구름처럼 폭신하고 부드러운 딸기 우유 느낌의 디저트 칵테일", sweet: 4, alc: 9, carb: "❌", flavor: "코코넛, 은은한 벚꽃 향", color: "불투명 연핑크 🌸", grad: ["#fad0c4", "#ffd1ff"],
+            { cat: "🌅 Sunset & Pink", name: "벚꽃 코코넛 구름", eng: "Sakura Coconut Cloud", desc: "구름처럼 폭신하고 부드러운 딸기 우유 느낌의 디저트 칵테일", sweet: 4, alc: 9, carb: "❌", flavor: "코코넛, 은은한 벚꽃 향", color: "불투명 연핑크 🌸", 
+              image: "images/img08.png", glow: "rgba(255, 180, 200, 0.15)",
               recipe: { glass: "올드 패션드 잔", method: "Shake", abv: 9, ingredients: [{name:"카나데 사쿠라", amount:30, unit:"ml"}, {name:"말리부", amount:30, unit:"ml"}, {name:"우유", amount:60, unit:"ml"}], garnish:"코코넛 파우더" } },
             
-            { cat: "🌴 Tropical & Green", name: "피나콜라다 스타일", eng: "Piña Colada Style", desc: "코코넛 크림 없이도 완벽한 열대 과일 칵테일", sweet: 4, alc: 11, carb: "❌", flavor: "진한 코코넛, 파인애플", color: "불투명 노란빛 🍍", grad: ["#f6d365", "#fda085"],
+            { cat: "🌴 Tropical & Green", name: "피나콜라다 스타일", eng: "Piña Colada Style", desc: "코코넛 크림 없이도 완벽한 열대 과일 칵테일", sweet: 4, alc: 11, carb: "❌", flavor: "진한 코코넛, 파인애플", color: "불투명 노란빛 🍍", 
+              image: "images/img09.png", glow: "rgba(255, 200, 30, 0.15)",
               recipe: { glass: "허리케인 잔", method: "Shake", abv: 11, ingredients: [{name:"말리부", amount:45, unit:"ml"}, {name:"바카디 화이트", amount:15, unit:"ml"}, {name:"파인애플 주스", amount:90, unit:"ml"}], garnish:"파인애플 리프" } },
-            { cat: "🌴 Tropical & Green", name: "트로피컬 진 펀치", eng: "Tropical Gin Punch", desc: "과일 펀치처럼 새콤달콤하면서도 진의 허브 향이 끝맛을 잡아줍니다", sweet: 4, alc: 12, carb: "❌", flavor: "오렌지, 파인애플, 솔잎 향", color: "상큼한 노란색 💛", grad: ["#f12711", "#f5af19"],
+            { cat: "🌴 Tropical & Green", name: "트로피컬 진 펀치", eng: "Tropical Gin Punch", desc: "과일 펀치처럼 새콤달콤하면서도 진의 허브 향이 끝맛을 잡아줍니다", sweet: 4, alc: 12, carb: "❌", flavor: "오렌지, 파인애플, 솔잎 향", color: "상큼한 노란색 💛", 
+              image: "images/img10.png", glow: "rgba(255, 180, 0, 0.15)",
               recipe: { glass: "콜린스 잔", method: "Build", abv: 12, ingredients: [{name:"런던 드라이 진", amount:30, unit:"ml"}, {name:"말리부", amount:15, unit:"ml"}, {name:"오렌지 주스", amount:45, unit:"ml"}, {name:"파인애플 주스", amount:45, unit:"ml"}], garnish:"체리" } },
-            { cat: "🌴 Tropical & Green", name: "코코넛 그린", eng: "Coconut Green", desc: "청사과의 상큼함과 코코넛의 고소한 단맛이 예상외로 훌륭한 시너지", sweet: 3, alc: 8, carb: "🫧", flavor: "청사과, 코코넛", color: "연한 초록빛 🍏", grad: ["#11998e", "#38ef7d"],
+            { cat: "🌴 Tropical & Green", name: "코코넛 그린", eng: "Coconut Green", desc: "청사과의 상큼함과 코코넛의 고소한 단맛이 예상외로 훌륭한 시너지", sweet: 3, alc: 8, carb: "🫧", flavor: "청사과, 코코넛", color: "연한 초록빛 🍏", 
+              image: "images/img11.png", glow: "rgba(80, 255, 80, 0.15)",
               recipe: { glass: "하이볼 잔", method: "Build", abv: 8, ingredients: [{name:"스미노프 그린애플", amount:30, unit:"ml"}, {name:"말리부", amount:15, unit:"ml"}, {name:"사이다", amount:60, unit:"ml"}], garnish:"없음" } },
-            { cat: "🌴 Tropical & Green", name: "에메랄드 시티", eng: "Emerald City", desc: "시각적으로 가장 화려하고 신비로운 분위기를 연출하는 형광빛 칵테일", sweet: 3, alc: 14, carb: "❌", flavor: "청사과, 코코넛, 오렌지", color: "형광 에메랄드 💚", grad: ["#00b09b", "#96c93d"],
+            { cat: "🌴 Tropical & Green", name: "에메랄드 시티", eng: "Emerald City", desc: "시각적으로 가장 화려하고 신비로운 분위기를 연출하는 형광빛 칵테일", sweet: 3, alc: 14, carb: "❌", flavor: "청사과, 코코넛, 오렌지", color: "형광 에메랄드 💚", 
+              image: "images/img12.png", glow: "rgba(0, 230, 100, 0.15)",
               recipe: { glass: "마티니 잔", method: "Shake", abv: 14, ingredients: [{name:"스미노프 그린애플", amount:30, unit:"ml"}, {name:"말리부", amount:15, unit:"ml"}, {name:"오렌지 주스", amount:60, unit:"ml"}, {name:"블루 큐라소", amount:5, unit:"ml"}], garnish:"민트 잎" } },
-            { cat: "🌴 Tropical & Green", name: "트로피컬 레인보우", eng: "Tropical Rainbow", desc: "위는 파랗고 아래는 노란 휴양지 해변 같은 투톤 그라데이션", sweet: 4, alc: 10, carb: "❌", flavor: "열대과일 믹스, 오렌지", color: "파랑-노랑 투톤 🌈", grad: ["#12c2e9", "#c471ed"],
+            { cat: "🌴 Tropical & Green", name: "트로피컬 레인보우", eng: "Tropical Rainbow", desc: "위는 파랗고 아래는 노란 휴양지 해변 같은 투톤 그라데이션", sweet: 4, alc: 10, carb: "❌", flavor: "열대과일 믹스, 오렌지", color: "파랑-노랑 투톤 🌈", 
+              image: "images/img13.png", glow: "rgba(80, 180, 255, 0.15)",
               recipe: { glass: "허리케인 잔", method: "Build", abv: 10, ingredients: [{name:"바카디 화이트", amount:30, unit:"ml"}, {name:"오렌지 주스", amount:45, unit:"ml"}, {name:"파인애플 주스", amount:45, unit:"ml"}, {name:"블루 큐라소", amount:15, unit:"ml(Float)"}], garnish:"오렌지 웻지" } },
             
-            { cat: "🥂 Mix & Premium", name: "사쿠라 진 토닉", eng: "Sakura Gin Tonic", desc: "클래식 진토닉에 우아한 벚꽃 향을 더한 고급스러운 한 잔", sweet: 2, alc: 11, carb: "🫧", flavor: "벚꽃 향, 주니퍼베리", color: "투명 연분홍 🌸", grad: ["#ff758c", "#ff7eb3"],
+            { cat: "🥂 Mix & Premium", name: "사쿠라 진 토닉", eng: "Sakura Gin Tonic", desc: "클래식 진토닉에 우아한 벚꽃 향을 더한 고급스러운 한 잔", sweet: 2, alc: 11, carb: "🫧", flavor: "벚꽃 향, 주니퍼베리", color: "투명 연분홍 🌸", 
+              image: "images/img14.png", glow: "rgba(255, 170, 200, 0.15)",
               recipe: { glass: "하이볼 잔", method: "Build", abv: 11, ingredients: [{name:"런던 드라이 진", amount:30, unit:"ml"}, {name:"카나데 사쿠라", amount:15, unit:"ml"}, {name:"토닉워터", amount:"Fill", unit:""}], garnish:"레몬 슬라이스" } },
-            { cat: "🥂 Mix & Premium", name: "체리블라썸 애플", eng: "Cherry Blossom Apple", desc: "마티니처럼 달콤하면서도 알코올의 존재감이 기분 좋게 느껴지는 맛", sweet: 3, alc: 18, carb: "🫧", flavor: "벚꽃 향, 청사과", color: "은은한 핑크 🍒", grad: ["#ff0844", "#ffb199"],
+            { cat: "🥂 Mix & Premium", name: "체리블라썸 애플", eng: "Cherry Blossom Apple", desc: "마티니처럼 달콤하면서도 알코올의 존재감이 기분 좋게 느껴지는 맛", sweet: 3, alc: 18, carb: "🫧", flavor: "벚꽃 향, 청사과", color: "은은한 핑크 🍒", 
+              image: "images/img15.png", glow: "rgba(255, 130, 160, 0.15)",
               recipe: { glass: "마티니 잔", method: "Shake", abv: 18, ingredients: [{name:"스미노프 그린애플", amount:30, unit:"ml"}, {name:"카나데 사쿠라", amount:30, unit:"ml"}, {name:"사이다", amount:45, unit:"ml"}], garnish:"애플 슬라이스" } },
-            { cat: "🥂 Mix & Premium", name: "퍼플 갤럭시", eng: "Purple Galaxy", desc: "붉은색과 푸른색이 섞이며 우주 같은 몽환적인 보랏빛 연출", sweet: 3, alc: 9, carb: "🫧", flavor: "솔향, 오렌지, 석류", color: "몽환적 보랏빛 🌌", grad: ["#cc2b5e", "#753a88"],
+            { cat: "🥂 Mix & Premium", name: "퍼플 갤럭시", eng: "Purple Galaxy", desc: "붉은색과 푸른색이 섞이며 우주 같은 몽환적인 보랏빛 연출", sweet: 3, alc: 9, carb: "🫧", flavor: "솔향, 오렌지, 석류", color: "몽환적 보랏빛 🌌", 
+              image: "images/img16.png", glow: "rgba(130, 40, 255, 0.15)",
               recipe: { glass: "하이볼 잔", method: "Build", abv: 9, ingredients: [{name:"그레나딘 시럽", amount:15, unit:"ml(Bottom)"}, {name:"런던 드라이 진", amount:30, unit:"ml"}, {name:"사이다", amount:90, unit:"ml"}, {name:"블루 큐라소", amount:15, unit:"ml(Float)"}], garnish:"없음" } },
-            { cat: "🥂 Mix & Premium", name: "스위트 AMF", eng: "Adios Mother F****", desc: "단맛과 청량함에 가려져 꿀꺽꿀꺽 넘어가는 파티용 폭탄주", sweet: 4, alc: 18, carb: "🫧", flavor: "청사과, 오렌지, 럼, 진", color: "투명 블루 💎", grad: ["#2193b0", "#6dd5ed"],
+            { cat: "🥂 Mix & Premium", name: "스위트 AMF", eng: "Adios Mother F****", desc: "단맛과 청량함에 가려져 꿀꺽꿀꺽 넘어가는 파티용 폭탄주", sweet: 4, alc: 18, carb: "🫧", flavor: "청사과, 오렌지, 럼, 진", color: "투명 블루 💎", 
+              image: "images/img17.png", glow: "rgba(40, 130, 255, 0.15)",
               recipe: { glass: "콜린스 잔", method: "Build", abv: 18, ingredients: [{name:"런던 드라이 진", amount:15, unit:"ml"}, {name:"바카디 화이트", amount:15, unit:"ml"}, {name:"스미노프 그린애플", amount:15, unit:"ml"}, {name:"블루 큐라소", amount:15, unit:"ml"}, {name:"사이다", amount:"Fill", unit:""}], garnish:"레몬 웻지" } },
-            { cat: "🥂 Mix & Premium", name: "오리엔탈 선셋 하이볼", eng: "Oriental Sunset Highball", desc: "프리미엄 위스키의 오크 향에 꽃과 과일의 단맛이 더해진 럭셔리 하이볼", sweet: 3, alc: 14, carb: "🫧", flavor: "오크통 향, 벚꽃, 오렌지", color: "노을빛 붉은색 🌅", grad: ["#fc4a1a", "#f7b733"],
+            { cat: "🥂 Mix & Premium", name: "오리엔탈 선셋 하이볼", eng: "Oriental Sunset Highball", desc: "프리미엄 위스키의 오크 향에 꽃과 과일의 단맛이 더해진 럭셔리 하이볼", sweet: 3, alc: 14, carb: "🫧", flavor: "오크통 향, 벚꽃, 오렌지", color: "노을빛 붉은색 🌅", 
+              image: "images/img18.png", glow: "rgba(255, 60, 0, 0.15)",
               recipe: { glass: "올드 패션드 잔", method: "Build", abv: 14, ingredients: [{name:"토고우치 18년", amount:15, unit:"ml"}, {name:"카나데 사쿠라", amount:15, unit:"ml"}, {name:"오렌지 주스", amount:60, unit:"ml"}, {name:"그레나딘 시럽", amount:15, unit:"ml(Float)"}], garnish:"오렌지 필" } },
-            { cat: "🥂 Mix & Premium", name: "진 앤 베리 블리스", eng: "Gin & Berry Bliss", desc: "복분자의 무거운 단맛을 진이 깔끔하게 잡아주는 와인 에이드 스타일", sweet: 3, alc: 11, carb: "🫧", flavor: "진한 복분자, 허브 향", color: "검붉은 와인색 🍷", grad: ["#8e0e00", "#1f1c18"],
+            { cat: "🥂 Mix & Premium", name: "진 앤 베리 블리스", eng: "Gin & Berry Bliss", desc: "복분자의 무거운 단맛을 진이 깔끔하게 잡아주는 와인 에이드 스타일", sweet: 3, alc: 11, carb: "🫧", flavor: "진한 복분자, 허브 향", color: "검붉은 와인색 🍷", 
+              image: "images/img19.png", glow: "rgba(150, 0, 50, 0.15)",
               recipe: { glass: "와인 잔", method: "Build", abv: 11, ingredients: [{name:"런던 드라이 진", amount:30, unit:"ml"}, {name:"복분자", amount:30, unit:"ml"}, {name:"사이다", amount:60, unit:"ml"}], garnish:"로즈마리" } },
-            { cat: "🥂 Mix & Premium", name: "코코넛 애플 브리즈", eng: "Coconut Apple Breeze", desc: "스크류바 아이스크림을 연상케 하는 친숙하고 기분 좋은 단맛", sweet: 4, alc: 13, carb: "❌", flavor: "코코넛, 청사과, 달콤한 석류", color: "코럴 빛깔 🍹", grad: ["#ff9966", "#ff5e62"],
+            { cat: "🥂 Mix & Premium", name: "코코넛 애플 브리즈", eng: "Coconut Apple Breeze", desc: "스크류바 아이스크림을 연상케 하는 친숙하고 기분 좋은 단맛", sweet: 4, alc: 13, carb: "❌", flavor: "코코넛, 청사과, 달콤한 석류", color: "코럴 빛깔 🍹", 
+              image: "images/img20.png", glow: "rgba(255, 100, 80, 0.15)",
               recipe: { glass: "마티니 잔", method: "Shake", abv: 13, ingredients: [{name:"말리부", amount:30, unit:"ml"}, {name:"스미노프 그린애플", amount:30, unit:"ml"}, {name:"파인애플 주스", amount:60, unit:"ml"}, {name:"그레나딘 시럽", amount:15, unit:"ml(Sink)"}], garnish:"체리" } }
         ];
 
@@ -335,49 +274,6 @@
 
         const getStars = (count) => `<span class="stars">${'★'.repeat(count)}</span><span class="stars-empty">${'★'.repeat(5 - count)}</span>`;
 
-        // [핵심] 코드로 칵테일 잔과 액체를 완벽하게 그리는 SVG 생성 함수 (절대 안 깨짐)
-        function createGlassSVG(glassType, grad, cid) {
-            const defs = `<defs>
-                <linearGradient id="g-${cid}" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stop-color="${grad[0]}"/>
-                    <stop offset="100%" stop-color="${grad[1]}"/>
-                </linearGradient>
-                <linearGradient id="glass" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="rgba(200,200,200,0.5)"/>
-                    <stop offset="50%" stop-color="rgba(255,255,255,0.1)"/>
-                    <stop offset="100%" stop-color="rgba(200,200,200,0.8)"/>
-                </linearGradient>
-            </defs>`;
-
-            let shape = '';
-            const s = `stroke="url(#glass)" stroke-width="2" fill="none"`;
-            const l = `fill="url(#g-${cid})" opacity="0.85"`;
-
-            if (glassType.includes('하이볼') || glassType.includes('콜린스')) {
-                shape = `
-                    <path d="M30 60 L70 60 L67 135 L33 135 Z" ${l} />
-                    <path d="M25 20 L75 20 M28 20 L33 135 A 5 5 0 0 0 38 140 L62 140 A 5 5 0 0 0 67 135 L72 20" ${s} />`;
-            } else if (glassType.includes('마티니')) {
-                shape = `
-                    <path d="M15 25 L85 25 L50 65 Z" ${l} />
-                    <path d="M10 20 L90 20 L50 70 Z M50 70 L50 135 M30 135 L70 135" ${s} />`;
-            } else if (glassType.includes('올드')) {
-                shape = `
-                    <path d="M25 80 L75 80 L72 135 L28 135 Z" ${l} />
-                    <path d="M20 50 L80 50 M22 50 L28 135 A 5 5 0 0 0 33 140 L67 140 A 5 5 0 0 0 72 135 L78 50" ${s} />`;
-            } else if (glassType.includes('와인') || glassType.includes('쿠페')) {
-                shape = `
-                    <path d="M20 40 Q 50 110 80 40 Z" ${l} />
-                    <path d="M15 30 Q 50 120 85 30 Z M50 85 L50 135 M30 135 L70 135" ${s} />`;
-            } else { // 허리케인
-                shape = `
-                    <path d="M35 50 C 35 70 45 80 45 90 C 45 105 35 115 35 125 L65 125 C 65 115 55 105 55 90 C 55 80 65 70 65 50 Z" ${l} />
-                    <path d="M30 20 C 30 50 45 70 45 90 C 45 110 30 130 30 130 L70 130 C 70 110 55 90 55 70 C 55 50 70 20 70 20 Z" ${s} />`;
-            }
-
-            return `<svg viewBox="0 0 100 150" style="width:auto; height:100%; filter: drop-shadow(0 15px 25px ${grad[0]}50);">${defs}${shape}</svg>`;
-        }
-
         function renderCards() {
             track.innerHTML = '';
             let dotsHtml = '';
@@ -389,9 +285,9 @@
                 
                 card.innerHTML = `
                     <div class="card-content">
-                        <!-- 코드로 그려진 아름답고 완벽한 칵테일 아트워크 -->
-                        <div class="svg-wrapper">
-                            ${createGlassSVG(menu.recipe.glass, menu.grad, idx)}
+                        <!-- 실사 이미지 삽입 영역 -->
+                        <div class="menu-image-wrapper">
+                            <img src="${menu.image}" alt="${menu.eng}" class="menu-image">
                         </div>
 
                         <div class="menu-title">${menu.eng}</div>
@@ -450,7 +346,7 @@
             
             document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === currentIndex));
             
-            document.querySelector('.ambient-glow').style.background = `radial-gradient(circle, ${currentMenu.grad[0]}25 0%, transparent 60%)`;
+            document.querySelector('.ambient-glow').style.background = `radial-gradient(circle, ${currentMenu.glow} 0%, transparent 60%)`;
 
             saveProgress();
             if(document.getElementById('tocOverlay').classList.contains('open')) highlightCurrentToc();
@@ -464,28 +360,13 @@
         let startX = 0, isDragging = false;
         const sliderContainer = document.getElementById('sliderContainer');
 
-        sliderContainer.addEventListener('touchstart', e => {
-            startX = e.touches[0].clientX;
-            isDragging = true;
-            track.style.transition = 'none';
-        }, {passive: true});
-
-        sliderContainer.addEventListener('touchmove', e => {
-            if (!isDragging) return;
-            const deltaX = e.touches[0].clientX - startX;
-            const basePx = -currentIndex * window.innerWidth;
-            track.style.transform = `translateX(${basePx + deltaX}px)`;
-        }, {passive: true});
-
+        sliderContainer.addEventListener('touchstart', e => { startX = e.touches[0].clientX; isDragging = true; track.style.transition = 'none'; }, {passive: true});
+        sliderContainer.addEventListener('touchmove', e => { if (!isDragging) return; const deltaX = e.touches[0].clientX - startX; const basePx = -currentIndex * window.innerWidth; track.style.transform = `translateX(${basePx + deltaX}px)`; }, {passive: true});
         sliderContainer.addEventListener('touchend', e => {
             if (!isDragging) return;
-            isDragging = false;
-            track.style.transition = 'transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)';
+            isDragging = false; track.style.transition = 'transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)';
             const deltaX = e.changedTouches[0].clientX - startX;
-            
-            if (deltaX < -40) moveSlide(1);
-            else if (deltaX > 40) moveSlide(-1);
-            else updateSlider(); 
+            if (deltaX < -40) moveSlide(1); else if (deltaX > 40) moveSlide(-1); else updateSlider(); 
         }, {passive: true});
 
         function toggleToc() {
@@ -520,22 +401,12 @@
             document.getElementById('recipeSheet').classList.remove('show');
         }
 
-        function saveProgress() {
-            try { localStorage.setItem('lastRawIndex', activeIndices[currentIndex]); } catch(e) {}
-        }
-        function loadProgress() {
-            try {
-                const saved = localStorage.getItem('lastRawIndex');
-                if (saved !== null) {
-                    const idx = activeIndices.indexOf(parseInt(saved));
-                    if (idx !== -1) currentIndex = idx;
-                }
-            } catch(e) {}
-        }
+        function saveProgress() { try { localStorage.setItem('lastRawIndex', activeIndices[currentIndex]); } catch(e) {} }
+        function loadProgress() { try { const saved = localStorage.getItem('lastRawIndex'); if (saved !== null) { const idx = activeIndices.indexOf(parseInt(saved)); if (idx !== -1) currentIndex = idx; } } catch(e) {} }
 
         applySortAndRender(); 
-        loadProgress();       
-        updateSlider();       
+        loadProgress();        
+        updateSlider();        
     </script>
 </body>
 </html>
